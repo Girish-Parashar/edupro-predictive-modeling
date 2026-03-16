@@ -191,6 +191,8 @@ if page == "🏠 Overview":
     col3, col4 = st.columns(2)
 
     with col3:
+        transactions = transactions.copy()
+        transactions['TransactionDate'] = pd.to_datetime(transactions['TransactionDate'], dayfirst=True, errors='coerce')
         transactions['Month'] = transactions['TransactionDate'].dt.to_period('M')
         monthly = (transactions.groupby('Month')
                    .agg(Enrollments=('TransactionID','count'),
