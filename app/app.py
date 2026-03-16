@@ -15,7 +15,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-BASE   = r"C:\Users\Rohit\Downloads\Unified Mentor\project"
+BASE   = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA   = os.path.join(BASE, "data")
 MODELS = os.path.join(BASE, "models")
 
