@@ -19,11 +19,6 @@ BASE   = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA   = os.path.join(BASE, "data")
 MODELS = os.path.join(BASE, "models")
 
-# Fix Windows backslash issue for Linux/Cloud
-import pathlib
-DATA   = str(pathlib.Path(DATA))
-MODELS = str(pathlib.Path(MODELS))
-
 # ── Plotly Theme ─────────────────────────────────────────────────────
 PLOTLY_TEMPLATE = "plotly_white"
 COLOR_SEQ = px.colors.qualitative.Set2
