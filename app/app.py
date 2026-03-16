@@ -62,20 +62,18 @@ st.markdown("""
 # ── Load Data & Models ───────────────────────────────────────────────
 @st.cache_data
 def load_data():
-    courses      = pd.read_csv(f"{DATA}\\Courses.csv")
-    teachers     = pd.read_csv(f"{DATA}\\Teachers.csv")
-    transactions = pd.read_csv(f"{DATA}\\Transactions.csv")
-    transactions['TransactionDate'] = pd.to_datetime(
-        transactions['TransactionDate'], dayfirst=True)
-    users   = pd.read_csv(f"{DATA}\\Users.csv")
-    ml_data = pd.read_csv(f"{DATA}\\master_ml_final.csv")
+    courses      = pd.read_csv(os.path.join(DATA, "Courses.csv"))
+    teachers     = pd.read_csv(os.path.join(DATA, "Teachers.csv"))
+    transactions = pd.read_csv(os.path.join(DATA, "Transactions.csv"))
+    users        = pd.read_csv(os.path.join(DATA, "Users.csv"))
+    ml_data      = pd.read_csv(os.path.join(DATA, "master_ml_final.csv"))
     return courses, teachers, transactions, users, ml_data
 
 @st.cache_resource
 def load_models():
-    return (joblib.load(f"{MODELS}\\best_Course_Revenue.pkl"),
-            joblib.load(f"{MODELS}\\best_Category_Revenue.pkl"),
-            joblib.load(f"{MODELS}\\best_Enrollment_Count.pkl"))
+    return (joblib.load(os.path.join(MODELS, "best_Course_Revenue.pkl")),
+            joblib.load(os.path.join(MODELS, "best_Category_Revenue.pkl")),
+            joblib.load(os.path.join(MODELS, "best_Enrollment_Count.pkl")))
 
 courses, teachers, transactions, users, ml_data = load_data()
 rev_model_data, catrev_model_data, enroll_model_data = load_models()
